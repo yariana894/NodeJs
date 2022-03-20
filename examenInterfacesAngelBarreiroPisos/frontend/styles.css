@@ -1,0 +1,63 @@
+body, html {
+    background-color: rgb(226 232 240);
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center
+}
+
+.contenedor_principal, .box, .fotos, .resultados {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    order: 2;
+}
+
+.resultados {
+    align-content: flex-start;
+}
+
+.contenedor_principal * {
+    margin: 10px;
+    max-width: 75%;
+    width: 75%;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    order: 2;
+    width: auto !important;
+}
+
+.box2 {
+    border: black 1px solid;
+    border-radius: 10px;
+    padding: 1%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.fotos {
+    order: 1;
+    width: 20%;
+}
+
+#textarea, #input {
+    border-radius: 4px;
+}

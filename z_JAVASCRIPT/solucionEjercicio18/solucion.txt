@@ -1,0 +1,4 @@
+Solución: 
+Faltan los paréntesis
+miFuncion = unaFuncion;
+console.log(miFuncion());

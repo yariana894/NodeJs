@@ -1,0 +1,32 @@
+{
+  "name": "nombreexiste",
+  "version": "1.0.0",
+  "description": "Api para indicar si un nombre español existe",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ligtus/JavascriptEjercicios.git"
+  },
+  "keywords": [
+    "nombre",
+    "españa",
+    "español"
+  ],
+  "author": "Ligtus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ligtus/JavascriptEjercicios/issues"
+  },
+  "homepage": "https://github.com/Ligtus/JavascriptEjercicios#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.6",
+    "nodemon": "^2.0.15",
+    "tailwindcss": "^3.0.1"
+  }
+}

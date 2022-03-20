@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <canvas id="miCanvas" style="width:500px; height: 500px;border: 1px solid #000">
+        tu navegador no soporta canvas
+    </canvas>
+    <script>
+
+        var canvas = document.getElementById("miCanvas");
+
+        function aleatorioEntre2Valores(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+        function colorAleatorio() {
+            var num = aleatorioEntre2Valores(0, 8);
+            switch (num) {
+                case 0: return "red";
+                case 1: return "blue";
+                case 2: return "green";
+                case 3: return "orange";
+                case 4: return "pink";
+                case 5: return "black";
+                case 6: return "yellow";
+                case 7: return "brown";
+                case 8: return "magenta";
+                default: return "black";
+            }
+        }
+        function dibujarCirculoAleatorio() {
+            var posX = aleatorioEntre2Valores(0, 250)
+            var posY = aleatorioEntre2Valores(0, 250)
+            var radio = aleatorioEntre2Valores(3, 10)
+            var ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.strokeStyle = colorAleatorio()
+            // Genero un arco de 0 a 360 grados (de 0 a 2*PI)
+            ctx.arc(posX, posY, radio, 0, 2 * Math.PI);
+            ctx.stroke();
+        }
+
+        for (i = 0; i < 100; i++) {
+            dibujarCirculoAleatorio();
+        }
+
+
+
+    </script>
+</body>
+
+</html>

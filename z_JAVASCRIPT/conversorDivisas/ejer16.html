@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <label>Divisa origen</label>
+    <select id="origen">
+        <option value="eur">Euro</option>
+        <option value="usd">Dolar Americano</option>
+        <option value="gbp">Libra Esterlina</option>
+    </select>
+    <label>Cantidad</label>
+    <input id="cant" type="number"/>
+    <label>Divisa destino</label>
+    <select id="destino">
+        <option value="eur">Euro</option>
+        <option value="usd">Dolar Americano</option>
+        <option value="gbp">Libra Esterlina</option> 
+    </select>
+    <button id="convertir">Convertir</button>
+    <p id="resultado"></p>
+
+    <script type="text/javascript">
+        document.querySelector('#convertir').addEventListener('click', convertir);
+
+        function convertir(){
+            let or = document.querySelector('#origen').value;
+            let de = document.querySelector('#destino').value;
+            let cant = document.querySelector('#cant').value;
+            let res;
+            if(or === 'eur'){
+                if(de === 'usd'){
+                    res = cant * 1.11;
+                } else if(de === 'gbp'){
+                    res = cant * 0.86;
+                } else{
+                    res = cant;
+                }
+                document.querySelector('#resultado').innerHTML = res;
+            } else if(or === 'usd'){
+                if(de === 'eur'){
+                    res = cant * 0.9;
+                } else if(de === 'gbp'){
+                    res = cant * 0.78;
+                } else{
+                    res = cant;
+                }
+                document.querySelector('#resultado').innerHTML = res;
+            } else if(or === 'gbp'){
+                if(de === 'eur'){
+                    res = cant * 1.16;
+                } else if(de === 'usd'){
+                    res = cant * 1.28;
+                } else{
+                    res = cant;
+                }
+                document.querySelector('#resultado').innerHTML = res;
+            }
+        }
+    </script>
+</body>
+</html>

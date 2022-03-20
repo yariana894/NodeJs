@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .msg{
+            font-size: 4rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Detalle de la cita celebre</h1>
+    <div id="msg" class="msg"></div>
+    <a href="index.html">Volver</a>
+    <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const id = urlParams.get('id')
+
+        quotesList = []
+        var info = localStorage.getItem('info');
+        quotesList = JSON.parse(info)
+        let quote = quotesList.find(quote => quote.id === id)
+        document.getElementById('msg').innerHTML = quote.msg
+    </script>
+</body>
+</html>

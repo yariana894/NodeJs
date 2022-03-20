@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    Nombre:
+    <input id="nombre" />
+    <br/> Puntuacion:
+    <input type="number" id="puntuacion" />
+    <br/>
+    <button id="add">Añadir puntuacion</button>
+    <button id="undo" disabled="true">Undo</button>
+    <br/>
+    <div id="lista">No se han añadido jugadores aún</div>
+
+    <script>
+        var Jugador = function (nombre, puntuacion) {
+            this.nombre = nombre;
+            this.puntuacion = puntuacion;
+        }
+
+        var jugadores = []
+        var ultimoJugadorModificado
+        var ultimaPuntuacionInsertada
+        var undoPermitido=false
+
+
+        document.getElementById("add").addEventListener("click", add)
+        document.getElementById("undo").addEventListener("click", undo)
+
+        function undo(){
+            if(undoPermitido == false){
+                console.error("No puedes hacer undo hasta que hagas una modificación nueva")
+                return
+            }
+            ultimoJugadorModificado.puntuacion -= ultimaPuntuacionInsertada;
+            undoPermitido = false
+            document.getElementById("undo").disabled=true
+            ordenarJugadores()
+            mostrar()
+        }
+
+        function add() {
+            var existe = false;
+            var nombre = document.getElementById("nombre").value
+            var puntuacion = document.getElementById("puntuacion").value
+            
+            //validaciones
+            
+            puntuacion = Number(puntuacion); // convierto un texto a un numero
+
+
+            for (var indice in jugadores) {
+                if (jugadores[indice].nombre == nombre) { // ya existe el jugador en mi lista
+                    jugadores[indice].puntuacion += puntuacion
+                    existe = true;
+                    guardarDatosUltimaModificacion(jugadores[indice], puntuacion)
+                    break; // salgo del bucle for
+                }
+            }
+            if (existe == false) { // lo añado a mi lista de jugadores
+                var nuevoJugador = new Jugador(nombre, puntuacion);
+                jugadores.push(nuevoJugador);
+                guardarDatosUltimaModificacion(nuevoJugador, puntuacion)
+            }
+
+            ordenarJugadores()
+            mostrar();
+        }
+
+        function mostrar() {
+            var lista = document.getElementById("lista")
+            lista.innerHTML = ""
+            for (var indice in jugadores) {
+                lista.innerHTML += jugadores[indice].nombre + " : " + jugadores[indice].puntuacion + "<br/>"
+            } 
+        }
+
+        function ordenarJugadores() {
+            jugadores.sort(function (a, b) {
+                return b.puntuacion - a.puntuacion
+            })
+        }
+
+        function guardarDatosUltimaModificacion(jugador, puntuacion){
+            ultimoJugadorModificado = jugador
+            ultimaPuntuacionInsertada = puntuacion
+            undoPermitido = true
+            document.getElementById("undo").disabled=false
+        }
+    </script>
+
+</body>
+
+</html>

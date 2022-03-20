@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Document</title>
+</head>
+
+<body>
+       <br/><br/>
+   Nombre del producto: <input type="texto" id="nombre" value="" />
+   <br/>
+   Precio sin iva del producto: <input type="precio" id="precio" value="" />
+   <br/>
+   <input type="button" id="add" value="Añadir" />
+   <br/><br/>
+   La media de precio con iva de los productos insertados es: <spam id="media">0</spam>
+
+   <script>
+       (function () {
+           var lista = [];
+           function Producto(nombre, precio) {
+               this.nombre = nombre;
+               this.precio = precio;
+               this.imprimirProducto = function () {
+                   console.log(this.nombre + " " + this.apellidos);
+               }
+           }
+
+           Producto.prototype.precioConIva = function(){
+               return this.precio + this.precio*0.21;
+           }
+
+
+           function calculaMedia(){
+               var media = 0;
+               for(var p of lista){
+                   media += p.precioConIva();                   
+               }
+               total = media / lista.length;
+               document.getElementById('media').innerHTML=total;
+
+           }
+           function add(){
+               var nombre = document.getElementById('nombre').value;
+               var precio = document.getElementById('precio').value;
+              
+               var p=new Producto(nombre, Number.parseFloat(precio));
+
+               if(Number.isNaN(p.precio)) {
+                   return;
+               }
+               lista.push(p);
+
+              // console.log(lista);  4 7 10
+               calculaMedia();
+               document.getElementById('nombre').value = ''
+               document.getElementById('precio').value = ''
+           }
+
+           document.getElementById('add').addEventListener('click', add)
+
+
+       })();
+   </script>
+</body>
+
+</html>

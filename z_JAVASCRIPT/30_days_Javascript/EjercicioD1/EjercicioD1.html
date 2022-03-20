@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="boton" onclick="obtenerTemperatura()">Obtener</button>
+<div id="tempe"></div>
+
+</body>
+
+<script>
+    const request = new XMLHttpRequest();
+request.open('GET', '')
+
+    function obtenerTemperatura() {
+        fetch('https://api.tomorrow.io/v4/timelines?location=39.037793478168325,125.76576298213742&fields=temperature&timesteps=1h&units=metric&apikey=g8QZoo98K6RaMrtAkSSh8gWqWmsUcftJ')
+            .then(response => response.json())
+            .then(json => console.log(json));
+    }
+
+</script>
+</html>

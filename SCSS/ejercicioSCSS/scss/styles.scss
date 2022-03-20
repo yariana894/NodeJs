@@ -1,0 +1,117 @@
+$color-azul:blue;
+.color-titulo {
+    color: $color-azul;
+}
+
+.color-parrafo {
+    color: $color-azul;
+}
+
+.borde-redondeado {}
+
+@mixin borde-redondeado($radio) {
+    border-radius: $radio;
+    -ms-border-radius: $radio;
+    -moz-border-radius: $radio;
+    -webkit-border-radius: $radio;
+}
+
+.redondeado {
+    border: 1px solid orange;
+    @include borde-redondeado(15px);
+}
+
+$modo:testing; // produccion, desarrollo, testing
+.mensaje {
+    /**/
+    @if $modo==produccion {
+        color: red;
+    }
+    @else if $modo==desarrollo {
+        color: blue;
+    }
+    @else if $modo==testing {
+        color: orange;
+    }
+    @else {
+        color: black;
+    }
+}
+
+@for $i from 1 through 4 {
+    .text-#{$i} {
+        color: blue;
+        font-size: 10px*$i;
+    }
+}
+
+@each $color in blue,
+black,
+red {
+    .fondo-#{$color} {
+        background-color: $color;
+    }
+}
+
+$x:1;
+@while $x <=4 {
+    .est-#{$x} {
+        color: red;
+    }
+    $x:$x+1;
+}
+
+@import "nombres";
+.pepe-color {
+    color: $pepe;
+}
+
+.borde {
+    border: 2px solid green;
+    text-align: center;
+}
+
+.borde-redondito {
+    @extend .borde;
+    /* border: 2px solid green;
+    text-align: center;*/
+    border-radius: 15px;
+    -ms-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+}
+
+.boton {
+    background-color: cadetblue;
+    &:hover {
+        background-color: cornflowerblue;
+    }
+    &:active {
+        background-color: blueviolet;
+    }
+    &::after {
+        content: ">>>>";
+    }
+    &::before {
+        content: "<<<<";
+    }
+}
+
+// Listas (arrays)
+$frutas: limon manzana pera;
+@each $f in $frutas {
+    .imagen-#{$f} {
+        background-image: url('/imagenes/#{$f}.jpg');
+    }
+}
+
+// Mapas (diccionarios)
+$tamannos: ("small":10px,
+"medium":30px,
+"big":100px);
+@each $key,
+$value in $tamannos {
+    .fuente-#{$key} {
+        font-size: #{$value};
+    }
+}

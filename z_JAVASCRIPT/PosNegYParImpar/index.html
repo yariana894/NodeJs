@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+
+    <label for="numero">Introduce un número:</label>
+    <input type="text" id="numero">
+    <br />
+    <input type="button" id="calcular" value="Calcular">
+
+
+    <script>
+
+        document.getElementById('calcular').addEventListener('click', calcular)
+
+
+        function analizar(numero) {
+            if (numero >= 0) {
+                mensaje = "El numero es positivo"
+            } else {
+                mensaje = "El numero es negativo"
+            }
+
+            if (numero % 2 == 0) {
+                mensaje = mensaje + " y el numero es par"
+            } else {
+                mensaje = mensaje + " y el numero es impar"
+            }
+            return mensaje
+        }
+
+        function calcular() {
+            var mensaje = ""
+            var inputNumero = document.getElementById("numero");
+            var numeroTexto = inputNumero.value
+            var numero = parseInt(numeroTexto)
+
+            alert(analizar(numero))
+        }
+
+        var numeroLeido = prompt("Dame un numero")
+        alert(analizar(numeroLeido))
+
+
+
+    </script>
+
+</body>
+
+</html>

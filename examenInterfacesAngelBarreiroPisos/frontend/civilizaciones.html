@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="styles.css" rel="stylesheet" />
+    <title>Civilizations random</title>
+  </head>
+  <body>
+    <div class="contenedor_principal">
+      <div class="box">
+        <div class="box2">
+          <label for="textarea"
+            >Indica el nombre de las civilizaciones (separadas por
+            comas):</label
+          >
+          <textarea id="textarea" name="textarea"></textarea>
+        </div>
+        <div class="box2">
+          <label for="input"
+            >Cantidad de civilizaciones a elegir de forma random:</label
+          >
+          <input name="input" id="input" value="" />
+        </div>
+      </div>
+      <div class="buttons">
+        <button id="elegir">Elegir</button>
+        <button id="limpiar">Limpiar</button>
+      </div>
+      <div class="box">
+        <div class="resultados" id="buenos">
+          <b>Civilizaciones seleccionadas al azar:</b>
+        </div>
+        <div class="resultados" id="malos">
+          <b>Civilizaciones incorrectas:</b>
+        </div>
+      </div>
+      <img
+        class="fotos"
+        src="https://areajugones.sport.es/wp-content/uploads/2019/06/Age-of-Empires-II.jpg"
+      />
+    </div>
+  </body>
+  <script>
+    document.getElementById("elegir").addEventListener("click", comprobar);
+
+    let datos;
+    let url = window.location.href;
+    url = url.substring(0, url.indexOf(":", 5));
+    let nombres = [];
+    async function descargar() {
+      try {
+        const res = await fetch(url + ":6800/civilizaciones");
+        datos = await res.json();
+        datos.forEach((element) => {
+          nombres.push(element[1].toLowerCase());
+        });
+        console.log(nombres);
+      } catch {
+        (error) => console.error("Error al conectar con el backend");
+      }
+    }
+
+    function comprobar() {
+      let names = document.getElementById("textarea").value.split(",");
+      let valid = [];
+      let notValid = [];
+      let elegidos = [];
+
+      names = names.map((element) => {
+        return element.trim();
+      });
+      names = names.map((element) => {
+        return element.toLowerCase();
+      });
+
+      names.forEach((element) => {
+        if (nombres.includes(element)) {
+          valid.push(element);
+        } else {
+          notValid.push(" " + element);
+        }
+      });
+
+      let numeroElegidos = document.getElementById("input").value;
+
+      if (numeroElegidos == "") {
+        numeroElegidos = 1;
+      }
+
+      for (let index = 0; index < numeroElegidos; index++) {
+        let elegido = Math.floor(Math.random() * valid.length);
+        console.log(elegido);
+        elegidos.push(valid[elegido]);
+      }
+
+      document.getElementById("buenos").innerHTML =
+        "<b>Civilizaciones seleccionadas al azar:</b>" + elegidos;
+      document.getElementById("malos").innerHTML =
+        "<b>Civilizaciones incorrectas:</b>" + notValid;
+    }
+
+    window.onload = descargar();
+  </script>
+</html>

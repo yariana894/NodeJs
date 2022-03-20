@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Calcula del IMC</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+    <div class="formulario">
+        <form action="">
+            <label for="altura">Altura</label>
+            <input id="altura" type="text" placeholder="Ej 1.70" />
+            <br />
+            <label for="peso">Peso</label>
+            <input id="peso" type="text" placeholder="Ej 80" />
+            <br />
+            <input id="calcular" type="button" value="CALCULAR IMC" />
+        </form>
+    </div>
+
+
+    Indice de Masa Corporal= <span id="resultado"></span>
+    <br />
+    Atendiendo al IMC, tiene= <span id="clase"></span>
+
+    <script>
+
+        (function () {
+            var altura = document.getElementById("altura");
+            var peso = document.getElementById("peso");
+            var resultado = document.getElementById("resultado");
+            var clase = document.getElementById("clase");
+            var calcular = document.getElementById("calcular");
+
+            var eventoCalcular = function () {
+
+                if (validaFormulario() === false) {
+                    return false;
+                }
+
+                var imc = peso.value / (altura.value * altura.value)
+                resultado.innerHTML = imc
+                switch (true) {
+                    case imc < 16:
+                        clase.innerHTML = "Infrapeso: Delgadez Severa"
+                        break;
+                    case (imc >= 16 && imc < 17):
+                        clase.innerHTML = "Infrapeso: Delgadez moderada"
+                        break;
+                    case (imc >= 17 && imc < 18.5):
+                        clase.innerHTML = "Infrapeso: Delgadez aceptable"
+                        break;
+                    case (imc >= 18.5 && imc < 25):
+                        clase.innerHTML = "Peso Normal"
+                        break;
+                    case (imc >= 25 && imc < 30):
+                        clase.innerHTML = "Sobrepeso"
+                        break;
+                    case (imc >= 30 && imc < 35):
+                        clase.innerHTML = "Obeso: Tipo I"
+                        break;
+                    case (imc >= 35 && imc < 40):
+                        clase.innerHTML = "Obeso: Tipo II"
+                        break;
+                    case imc >= 40:
+                        clase.innerHTML = "Obeso: Tipo III"
+                        break;
+                    default:
+                        clase.innerHTML = "Error"
+                        break;
+                }
+                peso.value = ""
+                altura.value = ""
+            }
+
+
+            function validaFormulario() {
+
+                if (altura.value === "") {
+                    altura.className = "error";
+                    altura.setAttribute("placeholder", "Inserte su altura. Ej 1.75");
+                    return false
+                } else {
+                    if (parseFloat(altura.value) <= 0 || isNaN(altura.value)) {
+                        altura.value = "";
+                        altura.className = "error";
+                        altura.setAttribute("placeholder", "Inserte una altura correcta. Ej 1.75");
+                        return false
+                    } else {
+                        altura.className = "";
+                        altura.setAttribute("placeholder", "");
+                    }
+                }
+
+                if (peso.value === "") {
+                    peso.className = "error";
+                    peso.setAttribute("placeholder", "Inserte su peso Ej 80");
+                    return false
+                } else {
+                    if (parseFloat(peso.value) <= 0 || isNaN(peso.value)) {
+                        peso.value = "";
+                        peso.className = "error";
+                        peso.setAttribute("placeholder", "Inserte un peso positivo. Ej 80");
+                        return false
+                    } else {
+                        peso.className = "";
+                        peso.setAttribute("placeholder", "");
+                    }
+                }
+
+                return true
+            }
+
+            calcular.addEventListener("click", eventoCalcular);
+
+        }());
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+$color_favorito_uno:blue;
+$color_favorito_dos:red;
+$color_favorito_tres:green;
+
+
+.prueba{
+  color: $color_favorito_dos;
+}
+
+.prueba_flex{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: large ;
+  font-style: oblique;
+}
+
+.pie{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: $color_favorito_tres;
+}

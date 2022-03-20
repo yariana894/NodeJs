@@ -1,0 +1,51 @@
+.contenedor_principal {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    margin: 10px;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    border: black 1px solid;
+    border-radius: 5px;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.caja {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+
+}
+
+label {
+    font-weight: bold;
+}
+
+span {
+    font-weight: normal
+}
+
+.botones {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    margin-top: 20px;
+}
+
+
+.fotos {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    order: -1;
+}
+
+img {
+    width: 200px;
+    height: 150px;
+}

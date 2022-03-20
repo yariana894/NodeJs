@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Ejercicio 26: Pinta Circulos</h1>
+    <br/>
+    <div>Tipo de forma a dibujar: </div>
+    <select id="tipo">
+        <option value="Circulo"> Circulos </option>
+        <option value="Circulo"> Cuadrados </option>
+        <option value="Circulo"> Triangulos </option>
+
+    </select>
+    <br/>
+    <div>Numero de circulos generados: </div>
+    <input type="text" id="numCirculos" value="7" />
+    <br/>
+    <div>Radio minimo circulos: </div>
+    <input type="text" id="radioMinimo" value="3" />
+    <br/>
+    <div>Radio maximo circulos: </div>
+    <input type="text" id="radioMaximo" value="25" />
+    <br/>
+    <div>Marcar para ver de colores: </div>
+    <input type="checkbox" id="color" />
+    <br/>
+    <input type="button" value="Pintar" id="pintar" />
+    <br/>
+    <canvas id="micanvas" style="border: 1px blue solid"></canvas>
+    </canvas>
+
+    <script>
+        document.getElementById("pintar").addEventListener("click", pintaCirculos);
+        var canvas = document.getElementById("micanvas")
+        canvas.width = 600
+        canvas.height = 300;
+        var ctx = canvas.getContext("2d")
+
+        function borrarCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function pintaCirculos() {
+            borrarCanvas()
+
+            ListaColores = ["red", "black", "green", "blue", "yellow", "pink", "brown"]
+            var numeroCirculos = document.getElementById("numCirculos")
+            numeroCirculos = Number.parseFloat(numeroCirculos.value)
+            var radioMinimos = document.getElementById("radioMinimo")
+            radioMinimos = Number.parseFloat(radioMinimos.value)
+            var radioMaximos = document.getElementById("radioMaximo")
+            radioMaximos = Number.parseFloat(radioMaximos.value)
+            var checkB = document.getElementById("color")
+
+
+
+            for (i = 0; i < numeroCirculos; i++) {
+                ctx.beginPath();
+                var posX = Math.floor((Math.random() * canvas.width))
+                var posY = Math.floor((Math.random() * canvas.height))
+                console.log(posX + "," + posY)
+                var radio = Math.floor(Math.random() * (radioMaximos - radioMinimos) + radioMinimos);
+
+                if (checkB.checked == false) {
+                    ctx.fillStyle = "black";
+                } else {
+                    ctx.fillStyle = ListaColores[Math.floor((Math.random() * 7))];
+                }
+
+                ctx.arc(posX, posY, radio, 0, 2 * Math.PI, true);
+                ctx.fill();
+                ctx.closePath();
+            }
+
+
+        }
+    </script>

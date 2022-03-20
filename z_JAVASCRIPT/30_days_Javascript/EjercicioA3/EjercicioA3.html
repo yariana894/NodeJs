@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+
+<button id="boton" onclick="resultado()">Resultado</button>
+<input id="texto" value="Introduce un algo">
+<br>
+<span id="res"></span>
+<br>
+<span id="codigo"></span>
+<br>
+<span id="expresion"></span>
+
+</body>
+
+<script type="text/javascript">
+    function resultado() {
+        let repetido = document.getElementById('texto').value;
+
+        let resultado = repetido + " " + repetido + " " + repetido;
+        document.getElementById('codigo').innerHTML = resultado;
+
+        let codigo = false
+        if (repetido.length === 5 && parseInt(repetido) >= 1000 && parseInt(repetido) <= 52999) {
+            codigo = true
+        }
+        document.getElementById('res').innerHTML = codigo;
+
+
+        let expr = /^Sa\w*do$/;
+        let resul;
+        if (expr.test(repetido) === true) {
+            resul = "Comienza por Sa y termina en do"
+        } else {
+            resul = "NO comienza por Sa y termina en do"
+        }
+        document.getElementById('expresion').innerHTML = resul
+    }
+</script>
+
+</html>

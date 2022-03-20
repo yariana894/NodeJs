@@ -1,0 +1,97 @@
+.color-titulo {
+  color: blue; }
+
+.color-parrafo {
+  color: blue; }
+
+.redondeado {
+  border: 1px solid orange;
+  border-radius: 15px;
+  -ms-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px; }
+
+.mensaje {
+  /**/
+  color: orange; }
+
+.text-1 {
+  color: blue;
+  font-size: 10px; }
+
+.text-2 {
+  color: blue;
+  font-size: 20px; }
+
+.text-3 {
+  color: blue;
+  font-size: 30px; }
+
+.text-4 {
+  color: blue;
+  font-size: 40px; }
+
+.fondo-blue {
+  background-color: blue; }
+
+.fondo-black {
+  background-color: black; }
+
+.fondo-red {
+  background-color: red; }
+
+.est-1 {
+  color: red; }
+
+.est-2 {
+  color: red; }
+
+.est-3 {
+  color: red; }
+
+.est-4 {
+  color: red; }
+
+.pepe-color {
+  color: orange; }
+
+.borde, .borde-redondito {
+  border: 2px solid green;
+  text-align: center; }
+
+.borde-redondito {
+  /* border: 2px solid green;
+    text-align: center;*/
+  border-radius: 15px;
+  -ms-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px; }
+
+.boton {
+  background-color: cadetblue; }
+  .boton:hover {
+    background-color: cornflowerblue; }
+  .boton:active {
+    background-color: blueviolet; }
+  .boton::after {
+    content: ">>>>"; }
+  .boton::before {
+    content: "<<<<"; }
+
+.imagen-limon {
+  background-image: url("/imagenes/limon.jpg"); }
+
+.imagen-manzana {
+  background-image: url("/imagenes/manzana.jpg"); }
+
+.imagen-pera {
+  background-image: url("/imagenes/pera.jpg"); }
+
+.fuente-small {
+  font-size: 10px; }
+
+.fuente-medium {
+  font-size: 30px; }
+
+.fuente-big {
+  font-size: 100px; }

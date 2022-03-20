@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Resultado de la liga de 1ª división española, consultado API (Fecht + Async/Await)</h1>
+    <div id="tabla"></div>
+    <script>
+
+        ( async () => {
+
+            let div = document.getElementById('tabla')
+
+
+            let datosExtra = {
+                'method': 'GET',
+                'headers': {
+                    'X-Auth-Token': 'a627e0e147e2410eb3397fa9ec82d6a3'
+                }
+            }
+            let proxyurl = 'https://cors-anywhere.herokuapp.com/' // Lo usamos si tenemos problemas con CORS
+            let idSpain = '2014'
+            let url = `https://api.football-data.org/v2/competitions/${idSpain}/standings`
+            let resultado = await fetch(proxyurl + url, datosExtra)
+            resultado = await resultado.json()
+            resultado.standings[0].table.forEach(equipo => {
+                div.innerHTML += equipo.position + " - " + equipo.team.name + " " + equipo.points + ' puntos <br/>' 
+            })
+
+        })()
+    </script>
+</body>
+
+</html>

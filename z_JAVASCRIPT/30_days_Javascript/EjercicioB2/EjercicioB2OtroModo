@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .centrado {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 97vh;
+        }
+
+    </style>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.7/plugin/isBetween.min.js" integrity="sha512-KIV8ZFbBv94hZRpp8hxpMI87J38VwsifSSg9oBjJ+DEjnWE62zqLTgZ9+E1wiWR7e5q4NChxdCC70jR9nwZHOg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+<div class="centrado" id="fecha"></div>
+<img id="foto" src="" width="100px">
+<script>
+    const foto = 'https://dibujosfaciles-dehacer.com/wp-content/uploads/2019/08/arbol-de-navidad-dibujo.jpg'
+    let hoy = new Date()
+    //let formateo = hoy.getDate() + "/" + (hoy.getMonth()+1) +"/"+hoy.getFullYear()
+    const formateo = new Intl.DateTimeFormat("es").format(hoy);
+    const elementos = formateo.split('-')
+
+    document.getElementById('fecha').innerHTML = formateo
+
+    dayjs.extend(window.dayjs_plugin_isBetween)
+    let navidad = dayjs(hoy).isBetween(new Date().getFullYear()+'-12-20', dayjs((new Date().getFullYear()+1)+'-1-6'))
+    if(navidad) document.getElementById('foto').src = foto
+
+
+</script>
+</body>
+
+</html>

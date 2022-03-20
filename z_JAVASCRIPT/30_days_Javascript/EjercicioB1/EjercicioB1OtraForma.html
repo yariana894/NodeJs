@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    Uso obligatorio de mayúsculas <input type="checkbox" id="mayus"> <br />
+    Uso obligatorio de mumeros <input type="checkbox" id="num"> <br />
+    Uso obligatorio de caracteres raros <input type="checkbox" id="raros"> <br />
+    Cantidad de caracteres <input id="cantidad"> <br />
+    <input id="password">
+    <div id="fortaleza"></div>
+</div>
+<script>
+    document.getElementById('password').addEventListener('keypress', operar)
+    function operar() {
+        let obligaMayus = document.getElementById('mayus').checked
+        let obligaNum = document.getElementById('num').checked
+        let obligaRaros = document.getElementById('raros').checked
+        let cantidad = parseInt(document.getElementById('cantidad').value)
+        let password = document.getElementById('password').value
+        let fuerte = true
+        if (obligaMayus) {
+            let regex = /[A-Z]/
+            if (!regex.test(password) == true) fuerte = false
+        }
+
+        if (obligaNum) {
+            let regex = /[0-9]/
+            if (!regex.test(password) == true) fuerte = false
+        }
+
+        if (obligaRaros) {
+            let regex = /[&$_#;]/
+            if (!regex.test(password) == true) fuerte = false
+        }
+
+        if (password.length < cantidad) fuerte = false
+
+        document.getElementById('fortaleza').innerHTML = fuerte
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>OPERACIONES DE 3 VALORES</h1>
+
+    <input type="text" id="num1">
+    </br>
+    </br>
+    <input type="text" id="num2">
+    </br>
+    </br>
+    <input type="text" id="num3">
+    </br>
+    </br>
+
+    <button type="button" onclick="operacionesSuma()">Calcular</button>
+    <button type="button" onclick="limpiar()">Limpiar</button>
+    <br>
+    <br>
+    <span id="resultado">Resultado</span>
+    <br>
+    <br>
+    <select id="Operaciones">
+        <option value="1" id="multi">Multi</option>
+        <option value="2" id="resta">Resta</option>
+        <option value="3" id="suma">Suma</option>
+        <option value="4" id="division">División</option>
+    </select>
+
+    <script>
+        let numero1 = Number(document.getElementById('num1').value);
+        let numero2 = Number(document.getElementById('num2').value);
+        let numero3 = Number(document.getElementById('num3').value);
+
+        function operacionesSuma() {
+
+            if (document.getElementById('suma').value) {
+                let opSuma = numero1 + numero2 + numero3;
+            }
+
+            document.getElementById('resultado').innerHTML = opSuma;
+        }
+
+        function limpiar() {
+            document.getElementById('num1').value = " ";
+            document.getElementById('num2').value = " ";
+            document.getElementById('num3').value = " ";
+        }
+    </script>
+
+
+
+</body>
+
+
+/* function operaciones() { let opMulti = Number(document.getElementById('multi').value); let opResta = Number(document.getElementById('resta').value); let opSuma = Number(document.getElementById('suma').value); let opDivision = Number(document.getElementById('division').value);
+let opResta = numero1 - numero2 - numero3; let opMulti = numero1 * numero2 * numero3; let opDivision = numero1 / numero2 / numero3; document.getElementById('resultado').innerHTML = opResta; document.getElementById('resultado').innerHTML = opMulti; document.getElementById('resultado').innerHTML
+= opDivision; }*/
+
+</html>

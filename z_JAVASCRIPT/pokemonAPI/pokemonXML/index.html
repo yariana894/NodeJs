@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Conexión a un API usando XMLHttpRequest y la tecnica de Promesas</h2>
+    <div>Esta aplicación permite calcular cual va a ser la evolución de un pokemon</div>
+    <br/>
+
+    <input type="text" id="nombre" value="charmander">
+    <button id="obtenerInfo"> Obtener evolucion </button>
+    <br/>
+    Evoluciona a: <span id="evolucion">...</span>
+    <br/>
+    Lista de habilidades: <span id="habilidades">...</span>
+    <br/>
+    <img id="imagen" src="#"/>
+
+    <script>
+        // callbacks, promesas y async/await
+        (() => {
+
+
+            let xhttp = new XMLHttpRequest()
+            let peticionApi = (url) => {
+                let promesa = new Promise( (resolve, reject) =>{
+
+
+                    xhttp.onreadystatechange = () => {
+                        if (xhttp.readyState === 4) { //COMPLETADA
+                            if (xhttp.status === 200) {
+                                resolve( JSON.parse(xhttp.responseText) )
+                            } else {
+                                reject('Fallo en la peticion a la URL')
+                            }
+                        }
+                    }
+                    xhttp.open('GET', url)
+                    xhttp.send()
+
+
+                })
+                return promesa
+               
+            }
+
+            document.getElementById('obtenerInfo').addEventListener('click', obtenerSiguienteEvolucion)
+            
+            function obtenerSiguienteEvolucion(){
+                let nombre = document.getElementById('nombre').value
+                let url = `https://pokeapi.co/api/v2/pokemon/${nombre}`
+                
+                peticionApi(url)
+                    .then( datos => {
+                        document.getElementById('imagen').src = datos.sprites.front_default
+                        document.getElementById('habilidades').innerHTML = datos.abilities.map(habilidad => habilidad.ability.name).join('; ')
+                       
+                        return peticionApi(datos.species.url)
+                     })
+                    .then( datos => peticionApi(datos.evolution_chain.url) )
+                    .then( datos => document.getElementById('evolucion').innerHTML = datos.chain.evolves_to[0].species.name )
+                    .catch( error => console.error('Error:'+error) )
+
+                    
+                
+            }
+
+
+
+        })()
+
+
+    </script>
+</body>
+
+</html>

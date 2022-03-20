@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora 3 valores</title>
+</head>
+
+<body>
+
+    <h1>CALCULADORA DE 3 VALORES</h1>
+
+    <input id="num1" />
+    <br />
+    <input id="num2" />
+    <br />
+    <input id="num3" />
+    <br />
+    <br />
+    <select id="lista">
+        <option value="suma">Sumar</option>
+        <option value="multi">Multi</option>
+        <option value="resta">Restar</option>
+        <option value="division">Dividir</option>
+    </select>
+    <br />
+    <br />
+
+    <button id="calcular" onclick="calcular()">Calcular</button>
+    <button id="limpiar" onclick="limpiar()">Limpiar</button>
+
+    <br />
+    <span id="res"></span>
+    <br />
+
+</body>
+
+<script>
+
+    document.querySelector('#calcular').addEventListener('click', calcular())
+    document.querySelector('#limpiar').addEventListener('click', limpiar())
+
+    function calcular() {
+        //hacemos referencia a las cajas
+        let caja1 = document.getElementById('num1').value;
+        let caja2 = document.getElementById('num2').value;
+        let caja3 = document.getElementById('num3').value;
+
+        //convertimos los valors(string) a float
+        let valorNumCaja1 = parseFloat(caja1);
+        let valorNumCaja2 = parseFloat(caja2);
+        let valorNumCaja3 = parseFloat(caja3);
+
+        let resultado;
+
+        if (document.getElementById('lista').value == "suma") {
+            resultado = valorNumCaja1 + valorNumCaja2 + valorNumCaja3
+        } else if (document.getElementById('lista').value == "resta") {
+            resultado = valorNumCaja1 - valorNumCaja2 - valorNumCaja3
+        } else if (document.getElementById('lista').value == "multi") {
+            resultado = valorNumCaja1 * valorNumCaja2 * valorNumCaja3
+        } else if (document.getElementById('lista').value == "division") {
+            resultado = valorNumCaja1 / valorNumCaja2 / valorNumCaja3
+        }
+
+        document.getElementById('res').innerHTML = resultado
+    }
+
+
+    function limpiar() {
+
+        //hacemos referencia a las cajas
+        let caja1 = document.getElementById('num1').value = "";
+        let caja2 = document.getElementById('num2').value = "";
+        let caja3 = document.getElementById('num3').value = "";
+
+        let resultado = document.getElementById('res1').innerHTML = "";
+    }
+
+</script>
+
+</html>

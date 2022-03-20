@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>ACIERTA EL NÚMERO QUE TE PROPONGO</h1>
+
+    <h4>Estoy pensando en un número entre el 1 y el 6 ¿Cuál es?</h4>
+
+    <input id="numero" />
+    <button id="comprobar" onclick="adivina()">Probar suerte</button>
+
+    <div id="resultado"></div>
+
+</body>
+
+<script>
+
+    document.querySelector('#comprobar').addEventListener('click', adivina())
+
+    function adivina() {
+
+        let numAleatorio = Math.random() * 6 + 1;
+        numAleatorio = Math.floor(numAleatorio);
+
+        let num = document.getElementById('numero').value;
+        let resultado = document.getElementById('resultado');
+
+        let IntNum = parseInt(num);
+
+        if (IntNum === numAleatorio) {
+            resultado.innerHTML = "Acertaste, el número es: " + numAleatorio;
+        } else {
+            resultado.innerHTML = "Lo siento, no es el número, el número es: " + numAleatorio;
+        }
+
+    }
+
+
+</script>
+
+</html>

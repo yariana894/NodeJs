@@ -1,0 +1,132 @@
+.maquina {
+    background-color: darkgoldenrod;
+    width: 200px;
+    height: 200px;
+}
+
+.flex-container {
+    background-color: lightblue;
+    /*  width: 200px;
+    height: 200px;*/
+    display: flex;
+    flex-direction: row;
+}
+
+.monedas-container {
+
+    /*background-color: orange;*/
+    display: flex;
+    flex-direction: column;
+}
+
+.hidden {
+    visibility: hidden;
+    position: absolute;
+    top: 592px;
+    left: 135px;
+}
+
+.show {
+    visibility: visible;
+    position: absolute;
+    top: 592px;
+    left: 135px;
+}
+
+@keyframes brillo {
+    from {
+        background-color: none;
+        box-shadow: -1px -3px rgba(250, 208, 0, 1);
+        -webkit-box-shadow: -1px -3px rgba(250, 208, 0, 1);
+        -moz-box-shadow: -1px -3px rgba(250, 208, 0, 1);
+    }
+
+    to {
+        box-shadow: -1px -3px 44px 17px rgba(250, 208, 0, 0);
+        -webkit-box-shadow: -1px -3px 44px 17px rgba(250, 208, 0, 0);
+        -moz-box-shadow: -1px -3px 44px 17px rgba(250, 208, 0, 0);
+    }
+}
+
+@keyframes desplazamiento {
+    from {
+        /* transform: scaleX(0);*/
+        transform: translateX(-100px);
+    }
+
+    to {
+        /*transform: scaleX(1);*/
+        transform: translateX(0px);
+    }
+}
+
+
+.taza {
+    visibility: visible;
+    position: absolute;
+    top: 592px;
+    left: 135px;
+
+    animation-name: brillo;
+    animation-duration: 2s;
+}
+
+.moneda {
+    animation-name: desplazamiento;
+    animation-duration: 2s;
+}
+
+
+#audios {
+    display: none
+}
+
+.textoMoneda::after {
+    content: ' monedas';
+}
+
+.textoMsg {
+    font-size: 1.5em;
+    position: absolute;
+    top: 260px;
+    width: 142px;
+    left: 120px;
+    background-color: rgb(122, 119, 100);
+}
+
+.textoMsg::after {
+    content: ' €';
+}
+
+.titulo {
+    color: white;
+    position: absolute;
+    left: 100px;
+    top: -7px
+}
+
+.coste {
+    font-size: 1.5em;
+    position: absolute;
+    top: 230px;
+    left: 80px;
+    font-style: italic;
+}
+
+.zonaProductos {
+    position: absolute;
+    width: 151px;
+    height: 180px;
+    top: 350px;
+    left: 101px;
+    border: 1px solid red
+}
+
+.zonaDevolucion {
+    position: absolute;
+    width: 45px;
+    height: 40px;
+    top: 370px;
+    left: 311px;
+    border: 1px solid red
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Conexión a un API usando Fetch y la tecnica async/await</h2>
+    <div>Esta aplicación muestra por pantalla una frase célebre de ChuckNorris (en ingles)</div>
+    <br/>
+    <div id="frase"></div>
+
+    <script>
+
+        async function miFuncion(){
+            const url = 'https://api.chucknorris.io/jokes/random';
+            /*fetch(url)
+                .then( resultado => resultado.text() )
+                .then( datosJson => 
+                    document.getElementById('frase').innerHTML = JSON.parse(datosJson).value )
+                .catch( () => alert('fallo en la petición al api') )
+            */
+        
+            let resultado = await fetch(url)
+            let datosJson = await resultado.json()
+            document.getElementById('frase').innerHTML = datosJson.value
+        }
+        miFuncion()
+    </script>
+
+
+</body>
+</html>

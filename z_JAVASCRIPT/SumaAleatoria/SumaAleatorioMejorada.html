@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="puntos"></div>
+    <div id="suma"></div>
+    <input id="respuesta" type="text">
+    <button id="boton">Responder</button>
+    <div id="resultado">Resultado</div>
+
+
+</body>
+
+<script>
+
+    (() => {
+        document.getElementById('boton').addEventListener('click', comprobar);
+
+        let acumuladorFallos = 0;
+        let acumuladorAciertos = 0;
+        let num1 = 0;
+        let num2 = 0;
+        let r = 0;
+
+        sumarNumeros()
+
+        function pintarPuntuacion() {
+            document.getElementById('puntos').innerHTML =
+                `Aciertos ${acumuladorAciertos} Fallos ${acumuladorFallos}`
+        }
+
+        function sumarNumeros() {
+            num1 = Number.parseInt(Math.random() * 8 + 1);
+            num2 = Number.parseInt(Math.random() * 8 + 1);
+            r = num1 + num2;
+
+            document.getElementById('suma').innerHTML = num1 + " + " + num2;
+        }
+
+        function comprobar() {
+            let respuestaUsuario = Number.parseInt(document.getElementById('respuesta').value);
+
+            if (respuestaUsuario === r) {
+                document.getElementById('resultado').innerHTML = 'Acertaste';
+                acumuladorAciertos += 1;
+            } else {
+                document.getElementById('resultado').innerHTML = 'Fallaste';
+                acumuladorFallos += 1;
+            }
+            sumarNumeros()
+            pintarPuntuacion()
+        }
+    })()
+
+</script>
+
+</html>

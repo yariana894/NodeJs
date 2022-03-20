@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>detail</title>
+    <style>
+        .msg{
+            font-size: 4rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Detalle de la cita célebre</h1>
+    <div id="msg" class="msg"></div>
+
+    <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const id = urlParams.get('id')
+
+        quotesList = []
+        let info = localStorage.getItem('info');
+
+        quotesList = JSON.parse(info)
+        let quote = quotesList.find(quote => quote.id === id)
+        document.getElementById('msg').innerHTML = quote.msg
+    </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>AoE2 Unit search</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-200">
+<div class="grid place-items-center h-screen">
+    <div class="w-2/3">
+        <h1 class="text-3xl font-bold underline tex">
+            Buscador de unidades AoE2
+        </h1>
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="ataque"
+        >Ataque mínimo</label
+        >
+        <input
+                value=""
+                class="
+            shadow
+            appearance-none
+            border
+            rounded
+            w-full
+            py-2
+            px-3
+            text-gray-700
+            leading-tight
+            focus:outline-none focus:shadow-outline
+          "
+                placeholder="Ataque"
+                name="ataque"
+                id="ataque"
+        />
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="ataque"
+        >Nombre</label
+        >
+        <input
+                value=""
+                class="
+            shadow
+            appearance-none
+            border
+            rounded
+            w-full
+            py-2
+            px-3
+            text-gray-700
+            leading-tight
+            focus:outline-none focus:shadow-outline
+          "
+                placeholder="Nombre"
+                name="nombre"
+                id="nombre"
+        />
+        <button
+                onclick="descargar()"
+                class="
+            bg-blue-500
+            hover:bg-blue-700
+            text-white
+            font-bold
+            py-2
+            px-4
+            rounded
+          "
+        >
+            Buscar
+        </button>
+        <div id="resultado"></div>
+    </div>
+</div>
+
+<script>
+    let datos;
+    let url = window.location.href;
+    let datosFiltrados = [];
+    url = url.substring(0, url.indexOf(":", 5));
+
+    async function descargar() {
+        let nombre = document.getElementById("nombre").value;
+        let ataque = document.getElementById("ataque").value;
+
+        if (nombre != "" || ataque != "") {
+            try {
+                const res = await fetch(
+                    url + ":6800/busca_unidades?nombre=" + nombre + "&ataque=" + ataque
+                );
+                datos = await res.json();
+                console.log(datos);
+                document.getElementById("resultado").innerText = datos;
+            } catch {
+                (error) => console.error("Error al conectar con el backend");
+            }
+        }
+    }
+</script>
+</body>
+</html>

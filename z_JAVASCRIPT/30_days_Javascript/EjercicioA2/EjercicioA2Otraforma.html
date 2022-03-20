@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+Inserta los numeros separados por comas
+<input id="numeros">
+<div id="resultado"></div>
+<script>
+    document.getElementById('numeros').addEventListener('change', operar)
+
+    function obtenerNumerosMedio(array){
+        //TODO mejorar esto
+        let mitad = []
+        let mitadArray = parseInt(array.length/2)
+        mitad[0] = array[mitadArray]
+        if(array.length % 2 === 0){ //par
+            mitad[1] = array[mitadArray-1]
+        }else{ // impar
+            mitad[1] = ''
+        }
+        return mitad
+    }
+
+    function operar(){
+        let array = document.getElementById('numeros')
+            .value.split(',')
+            .map(texto => parseFloat(texto) )
+
+        let estaEl5 = array.includes(5)
+
+        const [num1,num2] = obtenerNumerosMedio(array)
+        let msg = `El numero 5 ${estaEl5?'si esta':'no esta'} el numero del medio es ${num2} ${num1} `
+        document.getElementById('resultado').innerHTML=msg
+    }
+
+</script>
+
+</body>
+</html>

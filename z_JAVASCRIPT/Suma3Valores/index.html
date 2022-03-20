@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suma 3 valores</title>
+</head>
+
+<body>
+
+    <h1>SUMADOR DE 3 VALORES</h1>
+
+    <input id="num1" />
+    <br />
+    <input id="num2" />
+    <br />
+    <input id="num3" />
+    <br />
+
+    <button id="calcular" onclick="calcular()">Calcular</button>
+    <button id="limpiar" onclick="limpiar()">Limpiar</button>
+
+    <br />
+    <span id="res1"></span>
+    <br />
+
+</body>
+
+<script>
+
+    document.querySelector('#calcular').addEventListener('click', calcular())
+    document.querySelector('#limpiar').addEventListener('click', limpiar())
+
+    function calcular() {
+        //hacemos referencia a las cajas
+        let caja1 = document.getElementById('num1').value;
+        let caja2 = document.getElementById('num2').value;
+        let caja3 = document.getElementById('num3').value;
+
+        //convertimos los valors(string) a float
+        let valorNumCaja1 = parseFloat(caja1);
+        let valorNumCaja2 = parseFloat(caja2);
+        let valorNumCaja3 = parseFloat(caja3);
+
+        let suma = valorNumCaja1 + valorNumCaja2 + valorNumCaja3;
+
+        document.getElementById('res1').innerHTML = suma
+    }
+
+
+    function limpiar(){
+
+        //hacemos referencia a las cajas
+        let caja1 = document.getElementById('num1').value = "";
+        let caja2 = document.getElementById('num2').value = "";
+        let caja3 = document.getElementById('num3').value = "";
+
+        let suma =document.getElementById('res1').innerHTML = ""; 
+    }
+
+</script>
+
+</html>

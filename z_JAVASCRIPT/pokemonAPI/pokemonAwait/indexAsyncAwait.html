@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Conexión a un API usando Fetch y la tecnica async/await</h2>
+    <div>Esta aplicación permite calcular cual va a ser la evolución de un pokemon</div>
+    <br/>
+    <input type="text" id="nombre" value="charmander">
+    <button id="obtenerInfo"> Obtener evolucion </button>
+    <br/>
+    Evoluciona a: <span id="evolucion">...</span>
+    <br/>
+    Lista de habilidades: <span id="habilidades">...</span>
+    <br/>
+    <img id="imagen" src="#"/>
+
+    <script>
+        // callbacks, promesas y async/await
+        ( () => {
+
+/*
+            async function peticionApi(url){
+                let resultado = await fetch(url) //1 seg 1/2 seg
+                resultado = resultado.json()
+                return resultado
+            }*/
+
+            document.getElementById('obtenerInfo').addEventListener('click', obtenerSiguienteEvolucion)
+            
+            async function obtenerSiguienteEvolucion(){
+                let nombre = document.getElementById('nombre').value
+                let url = `https://pokeapi.co/api/v2/pokemon/${nombre}`
+                                
+                
+                datos =  await fetch(url);
+                datos = await datos.json()
+                datos2 = await fetch(datos.species.url)
+                datos2 = await datos2.json()
+                datos3 = await fetch(datos2.evolution_chain.url)
+                datos3 = await datos3.json()
+                document.getElementById('evolucion').innerHTML = datos3.chain.evolves_to[0].species.name 
+                document.getElementById('imagen').src = datos.sprites.front_default
+                console.log(datos)
+                datos.abilities.forEach(h=>console.log(h.ability.name))
+                document.getElementById('habilidades').innerHTML = datos.abilities.map(habilidad => habilidad.ability.name).join('; ')
+
+            }
+
+
+
+        })()
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,8 @@
+crear be
+npm init --yes
+npm i express
+npm i cors
+npm i csv-parser
+npm i -D nodemon
+crear index.js
+

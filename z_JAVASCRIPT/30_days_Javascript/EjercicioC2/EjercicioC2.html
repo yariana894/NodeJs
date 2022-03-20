@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+<div id="nombre"></div>
+<div id="edad"></div>
+<div id="habilidades"></div>
+<div id="promedio"></div>
+<script>
+
+    let info = {
+        nombre: 'Jose',
+        apellidos: 'Romero Fuentes',
+        edad: '23',
+        skills: [
+            { nombre: 'programar', nivel: 3 },
+            { nombre: 'diseñar', nivel: 5 },
+            { nombre: 'testear', nivel: 1 }
+        ],
+        antiguedad: 5
+    }
+
+    const nombre = info.nombre + ' ' + info.apellidos
+    document.getElementById('nombre').innerHTML = nombre
+
+    if(info.edad < 20) document.getElementById('edad').style.color = 'red'
+    if(info.edad > 60) document.getElementById('edad').style.color = 'orange'
+    document.getElementById('edad').innerHTML = info.edad
+
+    const habilidades = info.skills.map(e=>e.nombre).join(', ')    // "programar, diseñar, testear"
+    document.getElementById('habilidades').innerHTML = habilidades
+
+    const promedio = info.skills.reduce(e=>e.nivel)   /  info.skills.length       //[3,5,1]
+    document.getElementById('promedio').innerHTML = promedio
+
+</script>
+</body>
+
+</html>

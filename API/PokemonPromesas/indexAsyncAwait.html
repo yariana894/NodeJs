@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Información de pokemons</h1>
+    <input id="nombre" value="charmander">
+    <button id="obtenerInfo">Información</button> <br> Evolución:
+    <span id="evolucion"></span> <br>
+    <img id="imagen" src="#"> <br>
+    <div id="habilidades"></div>
+    <script>
+        document.getElementById('obtenerInfo').addEventListener('click', obtenerInfo)
+
+        async function obtenerInfo() {
+            let nombre = document.getElementById('nombre')
+            let url = 'http://pokeapi.co/api/v2/pokemon/' + nombre.value
+            try {
+                let datos = await fetch(url) //0.5s
+                datos = await datos.json()
+
+                let urlImg = datos.sprites.front_default
+                document.getElementById('imagen').src = urlImg
+
+                datos = await fetch(datos.species.url)
+                datos = await datos.json()
+                datos = await fetch(datos.evolution_chain.url)
+                datos = await datos.json()
+
+                let evolucion = datos.chain.evolves_to[0].species.name
+                document.getElementById('evolucion').innerHTML = evolucion
+            } catch (error) {
+                console.log(error)
+            }
+
+            /*fetch(url)
+                .then( datos => datos.json()) 
+                .then( datos => {
+                    console.log(datos)
+                    let urlImg = datos.sprites.front_default
+                    document.getElementById('imagen').src=urlImg
+                    return fetch(datos.species.url)
+                })
+                .then(datos => datos.json() )
+                .then(datos => {
+                    console.log(datos)
+                    return fetch(datos.evolution_chain.url)
+                })
+                .then(datos => datos.json())
+                .then(datos => {
+                    console.log(datos)
+                    let evolucion = datos.chain.evolves_to[0].species.name
+                    document.getElementById('evolucion').innerHTML=evolucion
+                })
+                .catch(error => console.log('Fallo al hacer la peticion: '+error))
+                */
+        }
+    </script>
+</body>
+
+</html>

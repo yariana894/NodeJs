@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="/styles.css">
+</head>
+
+<body>
+    <h1>Formulario de login</h1>
+
+    <div id="msg"></div>
+    <div id="error" class="alert alert-danger ocultar" role="alert">
+        Las Contraseñas no coinciden, vuelve a intentar !
+    </div>
+    <div id="ok" class="alert alert-success ocultar" role="alert">
+        Las Contraseñas coinciden ! (Procesando formulario ... )
+    </div>
+
+
+    <form action="http://localhost:4000/registro" method="POST">
+
+
+
+        <form id="miformulario" onsubmit="verificarPasswords(); return false">
+            <div class="form-group">
+                <label for="user">Usuario</label>
+                <input type="text" class="form-control" id="user" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="pass1">Contraseña</label>
+                <input type="password" class="form-control" id="pass1" required>
+            </div>
+            <div class="form-group">
+                <label for="pass2">Vuelve a escribir la Contraseña</label>
+                <input type="password" class="form-control" id="pass2" required>
+            </div>
+
+            <button type="submit" id="login" class="btn btn-primary">Login</button>
+        </form>
+</body>
+
+<script>
+    function verificarPasswords() {
+
+        // Ontenemos los valores de los campos de contraseñas 
+        pass1 = document.getElementById('pass1');
+        pass2 = document.getElementById('pass2');
+
+        // Verificamos si las constraseñas no coinciden 
+        if (pass1.value != pass2.value) {
+
+            // Si las constraseñas no coinciden mostramos un mensaje 
+            document.getElementById("error").classList.add("mostrar");
+
+            return false;
+        } else {
+
+            // Si las contraseñas coinciden ocultamos el mensaje de error
+            document.getElementById("error").classList.remove("mostrar");
+
+            // Mostramos un mensaje mencionando que las Contraseñas coinciden 
+            document.getElementById("ok").classList.remove("ocultar");
+
+            // Desabilitamos el botón de login 
+            document.getElementById("login").disabled = true;
+
+            // Refrescamos la página (Simulación de envío del formulario) 
+            setTimeout(function() {
+                location.reload();
+            }, 3000);
+
+            return true;
+        }
+    }
+    
+</script>
+
+</html>

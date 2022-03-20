@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input id="texto">
+<br/>
+es codigo postal:<span id="postal"></span>
+<br/>
+repetido:<span id="repetido"></span>
+<br/>
+comienza por sa y termina por do:<span id="comienza"></span>
+<script>
+    document.getElementById('texto').addEventListener('change', operar)
+
+    function operar() {
+        let regex = /^(?:0[1-9]\d{3}|[1-4]\d{4}|5[0-2]\d{3})$/
+        let texto = document.getElementById('texto').value
+        document.getElementById('postal').innerHTML = regex.test(texto)
+        document.querySelector('#repetido').innerHTML = texto.repeat(3)
+        //TODO podemos usar una expresion regular /^sa.*do$/i
+        document.querySelector('#comienza').innerHTML = texto.startsWith('sa') && texto.endsWith('do')
+    }
+
+</script>
+
+</body>
+</html>

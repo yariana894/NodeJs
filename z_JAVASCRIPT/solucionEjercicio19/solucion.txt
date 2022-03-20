@@ -1,0 +1,3 @@
+Solución: 
+valor=4
+precio moto=1201

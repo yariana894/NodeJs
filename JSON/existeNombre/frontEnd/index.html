@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Comprobador de nombres</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" integrity="sha512-wnea99uKIC3TJF7v4eKk4Y+lMz2Mklv18+r4na2Gn1abDRPPOeef95xTzdwGD9e6zXJBteMIhZ1+68QC5byJZw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+<body>
+
+<!--contenedor general -->
+<div class="w-full max-w-xs ">
+
+    <!--formulario general -->
+    <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+
+        <!--div para el nombre -->
+        <div class="mb-4"> <!--margin bottom -->
+
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="nombre">Nombre </label>
+
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight
+            focus:outline-none focus:shadow-outline" id="nombre" type="text" placeholder="Nombre">
+
+        </div>
+
+        <!--div para el apellido -->
+        <div class="mb-6">
+
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="apellidos"> Apellidos </label>
+
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight
+            focus:outline-none focus:shadow-outline" id="apellidos" type="text" placeholder="Apellidos">
+
+        </div>
+
+        <!--div para el botón -->
+        <div class="flex items-center justify-center">
+
+            <button class="bg-pink-500 hover:bg-blue-700 text-white font-bold py-2 px-4
+            rounded focus:outline-none focus:shadow-outline" id="comprobar" type="button"> Comprobar </button>
+
+        </div>
+
+        <!--div para el resultado -->
+        <div class=" mt-6 flex items-center justify-center" id="resultado"> </div>
+
+    </form>
+
+</div>
+
+
+<script src="script.js"></script>
+</body>
+
+</html>

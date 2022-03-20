@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+
+    .texto {
+        font-size: 50px;
+    }
+</style>
+<body>
+
+<h1>DIA/MES/AÑO</h1>
+<br>
+<div id="dia" class="texto"></div>
+<div id="mes" class="texto">></div>
+<div id="ano" class="texto">></div>
+
+<img id="imag" src="">
+
+</body>
+
+<script>
+
+    let f = new Date();
+
+    let d = f.getDay();
+    let m = f.getMonth() + 1;
+    let y = f.getFullYear();
+
+    document.getElementById('dia').innerHTML = d;
+    document.getElementById('mes').innerHTML = m;
+    document.getElementById('ano').innerHTML = y;
+
+    document.getElementById('dia').style.color = 'red';
+    document.getElementById('mes').style.color = 'green';
+    document.getElementById('ano').style.color = 'red';
+
+    if (m === 12)
+        document.getElementById('imag').src = "navidad0.jpg"
+
+</script>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="fontawesome-free-5.11.2-web/css/all.css" rel="stylesheet">
+    <!--load all styles -->
+    <style>
+        .tachado{
+            text-decoration: line-through;
+        }
+        li{
+            list-style-type: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col">
+                <input type="text" id="nombreTarea" />
+                <input type="button" id="agregarTarea" value="Añadir" />
+
+                <ul id="listaTareas">
+                    <!--
+                    <li> <a href="#">xxxxxx</a> <a href="#"> <i class="fas fa-trash-alt"></i> </a> </li>
+                    -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function(){
+            document.querySelector('#agregarTarea').addEventListener('click', agregarTareaNueva)
+
+            function agregarTareaNueva(){
+                var li = document.createElement('li')
+                var a1 = document.createElement('a')
+                var a2 = document.createElement('a')
+                var textoContenido = document.createTextNode( document.querySelector('#nombreTarea').value )
+                var i = document.createElement('i')
+                a1.setAttribute('href','#')
+                a2.setAttribute('href','#')
+                i.setAttribute('class','fas fa-trash-alt')
+                
+                // añadimos eventos
+                a2.addEventListener('click', quitarTarea)
+                a1.addEventListener('click', completarTarea)
+
+
+                li.appendChild(a1)
+                li.appendChild(a2)
+                a1.appendChild(textoContenido)
+                a2.appendChild(i)
+
+                document.querySelector('#listaTareas').appendChild(li)
+            }
+
+            function quitarTarea(){
+                document.querySelector('#listaTareas').removeChild( this.parentNode )
+            }
+            function completarTarea(){
+                /*if(this.className == 'tachado'){
+                    this.className=''
+                }else{
+                    this.className='tachado'
+                }*/
+                this.className = this.className=='tachado'?'':'tachado' 
+            }
+
+        })();
+    </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

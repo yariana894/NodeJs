@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+
+<span id="n1"></span>
+
+<span id="n2"></span>
+<input type="text" id="caja">
+<button id="responder" onclick="sumarNumeros()">Responder</button>
+<span id="resultado"></span>
+<script>
+    let numero1 = generaAleatorios();
+    let numero2 = generaAleatorios();
+    function sumarNumeros() {
+
+
+
+        document.getElementById('n1').innerHTML=numero1;
+
+        let sum = num1 + num2;
+        console.log(sum)
+
+        document.getElementById('resultado').innerHTML = numero1
+
+
+    }
+
+    function generaAleatorios() {
+        return Math.round(Math.random() * 10);
+    }
+</script>
+
+
+</body>
+
+
+</html>

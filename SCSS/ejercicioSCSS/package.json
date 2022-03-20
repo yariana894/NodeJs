@@ -1,0 +1,15 @@
+{
+    "name": "ejercicioscss",
+    "version": "1.0.0",
+    "description": "Ejempo uso scss",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "scss": "node-sass --watch scss --output css"
+    },
+    "author": "Yariana",
+    "license": "ISC",
+    "dependencies": {
+        "node-sass": "^6.0.1"
+    }
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .tachado {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" id="nombreTarea" />
+    <input type="button" id="agregarTarea" value="Agregar tarea" />
+    <ul id="listaTareas">
+
+    </ul>
+
+    <div id="texto">...</div>
+    <script>
+        (function () {
+
+            var agregarTarea = document.getElementById("agregarTarea")
+            var nombreTarea = document.getElementById("nombreTarea")
+            var listaTareas = document.getElementById("listaTareas")
+
+            function eventoAgregarTarea() {
+                // Creamos los nuevos elementos
+                var li = document.createElement("li")
+                var a1 = document.createElement("a")
+                var a2 = document.createElement("a")
+                var textoContenido = document.createTextNode(nombreTarea.value)
+                var textoBorrar = document.createTextNode("(borrar)")
+                a1.setAttribute("href", "#")
+                a2.setAttribute("href", "#")
+                a1.addEventListener("click", eventoFinalizarTarea)
+                a2.addEventListener("click", eventoQuitarTarea)
+                // los situamos en los lugares adecuados
+                li.appendChild(a1)
+                li.appendChild(a2)
+                a1.appendChild(textoContenido)
+                a2.appendChild(textoBorrar)
+                listaTareas.appendChild(li)
+                // borramos el contenido de la caja de texto
+
+                document.getElementById("texto").innerHTML = nombreTarea.value
+                nombreTarea.value = ""
+            }
+            function eventoQuitarTarea() {
+                // this --> a
+                listaTareas.removeChild(this.parentNode)
+                //this.parentNode.parentNode.removeChild( this.parentNode )
+            }
+            function eventoFinalizarTarea() {
+                if (this.className == "tachado") {
+                    this.className = ""
+                } else {
+                    this.className = "tachado"
+                }
+
+            }
+            agregarTarea.addEventListener("click", eventoAgregarTarea)
+        }());
+
+    </script>
+</body>
+
+</html>

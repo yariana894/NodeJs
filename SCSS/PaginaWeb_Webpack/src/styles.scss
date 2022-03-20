@@ -1,0 +1,19 @@
+$color-fav:blue;
+.color-titulo {
+    color: $color-fav;
+}
+
+.color-parrafo {
+    color: $color-fav;
+}
+
+$color-fav:blue;
+.mi-fondo {
+    background-color: lightpink;
+    .color-titulo {
+        color: $color-fav;
+    }
+    .color-parrafo {
+        color: $color-fav;
+    }
+}

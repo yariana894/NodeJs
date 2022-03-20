@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div>Mira la consola de tu navegador</div>
+
+    <script>
+
+        class Factura {
+
+            constructor(numero, cliente, divisa, subtotal, iva) {
+                this.numero = numero;
+                this.cliente = cliente
+                this.divisa = divisa
+                this.subtotal = subtotal
+                this.iva = iva
+            }
+
+            total() {
+                return this.subtotal + this.iva;
+            }
+
+            aplicarDescuento(porcentaje) {
+                return this.subtotal - (this.subtotal / 100) * porcentaje
+            }
+
+            static instrucciones() {
+                return "Indica para cada factura su numero, cliente, divisa, subtotal e IVA en este orden"
+            }
+        }
+
+        let factura1 = new Factura(65, "Yari", "€", 45, 21);
+
+        console.log('Total: ', factura1.total())
+        console.log('Total con descuento: ', factura1.aplicarDescuento(5))
+
+        console.log('Instrucciones: ', Factura.instrucciones())
+    </script>
+
+</body>
+
+</html>

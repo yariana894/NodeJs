@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input id="texto">
+
+    <button id="convertir" onclick="convertir()">Convertir</button>
+
+    <div id="res1"></div>
+    <div id="res2"></div>
+</body>
+
+<script>
+    document.getElementById('convertir').addEventListener('click', convertir())
+
+    function convertir() {
+        let txt = document.getElementById('texto').value;
+
+        document.getElementById('res1').innerHTML = txt.toUpperCase()
+        document.getElementById('res2').innerHTML = txt.charAt(0).toUpperCase() + txt.slice(1)
+    }
+
+</script>
+
+</html>

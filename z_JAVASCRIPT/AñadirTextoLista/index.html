@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta content="text/html;" http-equiv="content-type" charset="utf-8">
+    <title></title>
+</head>
+
+<body>
+    <input id="texto" type="text" />
+    <input type="button" value="Añadir" onclick="addTexto()" />
+    <ul id="lista">
+        <li>linea de prueba 1</li>
+        <li>linea de prueba 2</li>
+        <li>linea de prueba 3</li>
+    </ul>
+    <script>
+
+        function addTexto() {
+            var texto = document.getElementById("texto")
+            if (texto.value == "") {
+                return;
+            }
+
+            var lista = document.getElementById("lista")
+
+            var nuevoLi = document.createElement("li");
+            var nuevoTexto = document.createTextNode(texto.value)
+
+            nuevoLi.appendChild(nuevoTexto);
+            lista.appendChild(nuevoLi);
+
+            texto.value = ""
+        }
+    </script>
+</body>
+
+</html>

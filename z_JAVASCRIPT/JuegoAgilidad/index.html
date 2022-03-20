@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="miCanvas" style="border:1px  solid blue"></canvas>
+    <script>
+        class Circulo {
+            constructor(x, y, r, color) {
+                this.x = x;
+                this.y = y;
+                this.r = r;
+                this.color = color;
+            }
+        }
+        var listaCirculos = [];
+
+        function dibujarCirculo(c) {
+            ctx.beginPath();
+            ctx.arc(c.x, c.y, c.r, 0, 2 * Math.PI);
+            ctx.closePath();
+            ctx.fillStyle = c.color
+            ctx.fill()
+            //ctx.strokeStyle=c.color
+            //ctx.stroke()
+        }
+
+        function contarCirculos(color) {
+            var contador = 0;
+            for (i in listaCirculos) {
+                if (listaCirculos[i].color === color) {
+                    contador++;
+                }
+            }
+            return contador;
+        }
+
+        function limpiarPantalla() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+        }
+
+        function pintarPantalla() {
+            limpiarPantalla()
+
+            for (i in listaCirculos) {
+                var c = listaCirculos[i];
+                dibujarCirculo(c);
+            }
+            // pintar la puntuacion
+            pintarPuntuaciones()
+        }
+
+        function pintarPuntuaciones() {
+            ctx.font = "30pt Verdana"
+            ctx.fillStyle = "black"
+            ctx.fillText(totalBlue, 50, 50)
+            ctx.fillText(totalRed, canvas.width - 50, 50)
+
+            var sumaCirculosBlue = contarCirculos("blue")
+            var sumaCirculosRed = contarCirculos("red")
+            ctx.fillText(sumaCirculosBlue, 50, 100)
+            ctx.fillText(sumaCirculosRed, canvas.width - 100, 100)
+
+            if (sumaCirculosBlue >= 200) {
+                ctx.fillText("HAS PERDIDO", 100, canvas.height / 2.0)
+            }
+
+        }
+
+        function controlClick(e) {
+            if(contarCirculos("blue") >= 200){
+                return;
+            }
+            var bound = canvas.getBoundingClientRect()
+            var mx = e.clientX - bound.x;
+            var my = e.clientY - bound.y
+
+            for (i in listaCirculos) {
+                var c = listaCirculos[i]
+                ca = c.x - mx
+                cb = c.y - my
+                var d = Math.sqrt(ca * ca + cb * cb)
+                if (d < c.r) {
+                    console.log("me tocas")
+                    if (c.color === "blue") {
+                        listaCirculos.splice(i, 1)
+                        pintarPantalla()
+                        totalBlue++;
+                        // aumentar puntuacion
+                    } else {
+                        totalRed++;
+                        // disminuir puntuacion
+                    }
+                }
+            }
+        }
+
+        function gestionarCirculos() {
+            // borrar algun circulo rojo
+            for (i in listaCirculos) {
+                if (listaCirculos[i].color === "red") {
+                    listaCirculos.splice(i, 1);
+                    // return <-- mal usado
+
+                    break;
+                }
+            }
+
+            // añadir algun circulo azul o rojo
+            var posX = Math.floor(Math.random() * canvas.width)
+            var posY = Math.floor(Math.random() * canvas.height)
+            var MAX = 50;
+            var MIN = 25;
+            var radio = Math.floor(Math.random() * (MAX - MIN + 1) + MIN)
+            if (Math.floor(Math.random() * 2) == 0) {
+                var color = "red"
+            } else {
+                var color = "blue"
+            }
+            var c = new Circulo(posX, posY, radio, color);
+            listaCirculos.push(c)
+
+        }
+
+        function timer() {
+            var timer = {
+                running: false,
+                iv: 5000,
+                timeout: false,
+                cb: function () {},
+                start: function (cb, iv, sd) {
+                    var elm = this;
+                    clearInterval(this.timeout);
+                    this.running = true;
+                    if (cb) this.cb = cb;
+                    if (iv) this.iv = iv;
+                    if (sd) elm.execute(elm);
+                    this.timeout = setTimeout(function () {
+                        elm.execute(elm)
+                    }, this.iv);
+                },
+                execute: function (e) {
+                    if (!e.running) return false;
+                    e.cb();
+                    e.start();
+                },
+                stop: function () {
+                    this.running = false;
+                },
+                set_interval: function (iv) {
+                    clearInterval(this.timeout);
+                    this.start(false, iv);
+                }
+            };
+            return timer;
+        }
+
+        var canvas = document.getElementById("miCanvas");
+        canvas.addEventListener("mousedown", controlClick)
+        canvas.width = 600;
+        canvas.height = 600;
+        var ctx = canvas.getContext("2d");
+        var listaCirculos = [];
+        var totalBlue = 0;
+        var totalRed = 0;
+        var dificultad = 1000;
+
+        // var c = new Circulo(300,300, 25 , "#FF0000")
+        // dibujarCirculo(c)
+
+        /*let intervalo = setInterval(() => {
+            console.log("aaa")
+            gestionarCirculos();
+            pintarPantalla();
+            // aumentar la dicultad
+            dificultad = dificultad - 100;
+            console.log(dificultad);
+            this.intervalo = setInterval(dificultad);
+        }, dificultad);*/
+        var timer_1 = new timer();
+        timer_1.start(function () {
+            if(contarCirculos("blue") >= 200){
+                time_1.stop()
+                return;
+            }
+            gestionarCirculos();
+            pintarPantalla();
+            // aumentar la dicultad
+            dificultad = dificultad- 30;
+            timer_1.set_interval(dificultad);
+
+        }, 1000, false);
+    </script>
+</body>
+
+</html>

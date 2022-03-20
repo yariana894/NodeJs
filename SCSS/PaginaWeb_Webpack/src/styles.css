@@ -1,0 +1,19 @@
+.color-titulo {
+    color: blue;
+}
+
+.color-parrafo {
+    color: blue;
+}
+
+.mi-fondo {
+    background-color: lightpink;
+}
+
+.mi-fondo .color-titulo {
+    color: blue;
+}
+
+.mi-fondo .color-parrafo {
+    color: blue;
+}

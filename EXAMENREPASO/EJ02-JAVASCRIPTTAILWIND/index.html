@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+          integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+          integrity="sha512-wnea99uKIC3TJF7v4eKk4Y+lMz2Mklv18+r4na2Gn1abDRPPOeef95xTzdwGD9e6zXJBteMIhZ1+68QC5byJZw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+</head>
+<body>
+
+<div class="p-4 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
+    <form class="space-y-6" action="#">
+        <h5 class="text-xl font-medium text-gray-900 dark:text-white">Buscar por nombre y ataque</h5>
+        <div>
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Minimum attack value: <input
+                    id="ataque"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"/></label>
+        </div>
+        <div>
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Civilizacion name: <input
+                    id="nombre"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"/></label>
+        </div>
+        <button id="search"
+                class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            Find Civilizations
+        </button>
+
+        <div>Número de resultado:
+            <pre id="result" class="text-sm font-medium text-gray-500 dark:text-gray-300">...aquí número de resultados...</pre>
+            <pre id="resultJSON" class="text-sm font-medium text-gray-500 dark:text-gray-300">...aquí va el resultado de la búsqueda...</pre>
+        </div>
+    </form>
+</div>
+<script>
+    document.getElementById('search').addEventListener('click', search)
+
+    async function search() {
+        const ataque = Number(document.getElementById('ataque').value)
+        const nombre = document.getElementById('nombre').value
+        try {
+            const url = `http://localhost:6800/buscar_unidades?nombre=${nombre}&ataque=${ataque}`
+            const request = await fetch(url)
+            const data = await request.json()
+
+            let count = data.length
+
+            console.log(JSON.stringify(data, null, 2))
+            console.log(console.count)
+            document.getElementById('resultJSON').innerHTML = JSON.stringify(data, null, 2)
+            document.getElementById('result').innerHTML = count
+        } catch {
+            error => console.log("Error al conectar con el backend")
+        }
+    }
+
+
+</script>
+</body>
+</html>

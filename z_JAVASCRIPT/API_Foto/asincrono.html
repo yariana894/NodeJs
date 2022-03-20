@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="boton">Obtener cara</button>
+
+    <img id="cara" src="" />
+
+    <script>
+        document.getElementById('boton').addEventListener('click', obtenerCaraDeAPI)
+
+        /**
+         * hacemos llamada desde nuestra aplicación hasta la API
+         **/
+
+        function obtenerCaraDeAPI() {
+            let json = fetch('https://randomuser.me/api')
+                .then(response => response.json())
+                .then(json => document.getElementById('cara').src = json['results'][0]['picture']['large'])
+
+            /**
+             * callbacks / promesas //async/await //observables. Tenemos que usar
+             * algún mecanismos de estos para quedarme a la escucha cuando este me-
+             * canismo se complete (json)
+             **/
+
+            //console.log(json)
+
+        }
+    </script>
+</body>
+
+</html>

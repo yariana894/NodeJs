@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="cambio.js"></script>
+
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+</head>
+
+<body>
+    <h1 class="titulo">CEBEM café</h1>
+    <div class="flex-container">
+        <img usemap="#planetmap" id="maquina" src="images/maquina.png" ondrop="drop(event)"
+             ondragover="allowDrop(event)" width="400">
+        <div class="monedas-container">
+            <img id="10cent" class="moneda" src="images/10cent.png" draggable="true" ondragstart="drag(event)"
+                 width="80">
+            <div id="_10centCartera" class="textoMoneda">0</div>
+            <br />
+            <img id="20cent" class="moneda" src="images/20cent.png" draggable="true" ondragstart="drag(event)"
+                 width="80">
+            <div id="_20centCartera" class="textoMoneda">0</div>
+            <br />
+
+            <img id="50cent" class="moneda" src="images/50cent.png" draggable="true" ondragstart="drag(event)"
+                 width="80">
+            <div id="_50centCartera" class="textoMoneda">0</div>
+            <br />
+
+            <img id="1euro" class="moneda" src="images/1euro.png" draggable="true" ondragstart="drag(event)" width="80">
+            <div id="_1euroCartera" class="textoMoneda">0</div>
+            <br />
+
+            <img id="2euro" class="moneda" src="images/2euro.png" draggable="true" ondragstart="drag(event)" width="80">
+            <div id="_2euroCartera" class="textoMoneda">0</div>
+            <br />
+        </div>
+
+    </div>
+
+    <img id="taza" src="images/taza.png" width="39" class="hidden">
+
+    <div id="msg" class="textoMsg" class="textoMsg">0</div>
+
+    <div class="coste">Coste café: 0,6€</div>
+
+
+    <div id="zona-productos" class="zonaProductos"></div>
+    <div id="zona-devolucion" class="zonaDevolucion"></div>
+
+    <audio id="monedaAudio" class="audios" controls>
+        <source type="audio/wav" src="sounds/moneda.wav">
+    </audio>
+
+    <audio id="cambioAudio" class="audios" controls>
+        <source type="audio/wav" src="sounds/cambio.wav">
+    </audio>
+
+    <script src="maquina.js"></script>
+    
+</body>
+
+</html>

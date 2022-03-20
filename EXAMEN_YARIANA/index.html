@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <img src="Age-of-empires.jpg">
+
+
+    <h1>Formulario de login</h1>
+    <form action="http://localhost:6800/login" method="POST">
+        <label for="user">Usuario:</label>
+        <input name="user">
+
+        <label for="password">Password:</label>
+        <input name="password">
+
+        <input type="submit" value="enviar">
+    </form>
+
+    <h1> Age-of-empires </h1>
+
+    <div class="container">
+        <span id="resultado"></span>
+        <button id="boton"> clicka</button>
+        <button id="limpiar">Limpiar</button>
+    </div>
+
+
+    <div>Indica el nombre de las civilizaciones (separadas por comas):
+        <input id="textarea" type="text"> </div>
+    <div>Cantidad de civilizaciones a elegir de forma random:
+        <input id="civi">
+    </div>
+
+    <button id="elegir">Elegir</button>
+    <button id="limpiar">Limpiar</button>
+
+    <div>
+        <div>Civilizaciones seleccionadas al azar:</div>
+
+    </div>
+
+
+
+    <script>
+        document.getElementById('boton').addEventListener('click', obtenerGato)
+
+        async function obtenerGato() {
+            const response = await fetch('http://localhost:6800/');
+            const res = await response.json();
+
+            console.log(res.id)
+
+
+            document.getElementById('resultado').innerHTML = res
+        }
+    </script>
+</body>
+
+</html>

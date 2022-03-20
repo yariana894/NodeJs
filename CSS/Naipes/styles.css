@@ -1,0 +1,49 @@
+.body {
+    background-color: black;
+}
+
+.container {
+    font-size: 45px;
+    display: flex;
+    width: 300px;
+    height: 450px;
+    background: #FFFBFB;
+    border: 1px solid #B0A9A9;
+    border-radius: 30px;
+    flex-direction: row;
+}
+
+.a {
+    margin: 10px;
+    width: 100px;
+    height: 100px;
+    color: red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.b {
+    display: flex;
+    flex-direction: column;
+    font-size: 70px;
+    margin: 10px;
+    width: 100px;
+    height: 600px;
+    color: red;
+    align-items: center;
+    justify-content: space-around;
+    align-self: center;
+}
+
+.d {
+    display: flex;
+    flex-direction: column-reverse;
+    margin: 10px;
+    transform: rotate(-180deg);
+    width: 100px;
+    height: 100px;
+    color: red;
+    align-self: flex-end;
+    align-items: center;
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            /*justify-content: center;
+            align-items: center;*/
+            width: 400px;
+            height: 200px;
+            background-color: lightblue;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+        
+        .flex-itemA {
+            flex-basis: 200px;
+            background-color: orange;
+        }
+        
+        .flex-itemB {
+            flex-basis: 200px;
+            background-color: greenyellow;
+            order: -1
+        }
+        
+        .flex-itemC {
+            flex-basis: 200px;
+            background-color: hotpink;
+        }
+        
+        .flex-itemD {
+            flex-basis: 100px;
+            background-color: palegreen;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>El titulo</h1>
+    <div class="flex-container">
+        <div class="flex-itemA">a</div>
+        <div class="flex-itemB">b</div>
+        <div class="flex-itemC">c</div>
+        <div class="flex-itemD">d</div>
+    </div>
+</body>
+
+</html>

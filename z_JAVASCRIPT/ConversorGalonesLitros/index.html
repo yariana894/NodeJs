@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+</head>
+
+<body>
+    <h1>Conversor galones a litros (y viceversa)</h1>
+    <br/>
+    <div>Galones: </div>
+    <input type="number" id="cajaGalones" />
+    <br/>
+    <div>Litros: </div>
+    <input type="number" id="cajaLitros" />
+</body>
+<script>
+    document.getElementById("cajaGalones").addEventListener("input", galonesLitros)
+    document.getElementById("cajaLitros").addEventListener("input", litrosGalones)
+
+
+    function galonesLitros() {
+        var galones = document.getElementById("cajaGalones")
+        galones = Number.parseFloat(galones.value)
+
+        if (isNaN(galones)) {
+            document.getElementById("cajaLitros").value = "error"
+        } else {
+            var litros = galones * 3.7854118
+            litros = litros.toFixed(3);
+            document.getElementById("cajaLitros").value = litros.toString()
+        }
+    }
+
+
+    function litrosGalones() {
+        var litros = document.getElementById("cajaLitros")
+        litros = Number.parseFloat(litros.value)
+
+        if (isNaN(litros)) {
+            document.getElementById("cajaGalones").value = "error"
+        } else {
+            var galones = litros * 0.2641720512
+            galones = galones.toFixed(3);
+            document.getElementById("cajaGalones").value = galones.toString()
+        }
+    }
+</script>
